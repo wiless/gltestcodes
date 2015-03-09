@@ -115,24 +115,8 @@ func run() error {
 	}
 
 	win := component.CreateWindow(nil)
-	// ctx := engine.Context()
-	// ctx.SetVar(name, value)
-	// button := win.ObjectByName("okbutton")
-	// button.On("clicked", Clicked)
-	// var goplotobj GoPlot
-	// goplotobj.Object = win.ObjectByName("myobject")
-	// goplotobj.Box = win.ObjectByName("myrect")
-	// goplotobj.plotter = win.ObjectByName("myobject")
-	// goplotobj.Object.On("mousePressed", goplotobj.Clicked)
-	// ctx := engine.Context()
-
-	// log.Printf("\n ObjectRetrieved is Plotter : %#v \n Object:=%#v \n Common:=%#v", goplotobj.plotter, goplotobj.Object, goplotobj.Common().TypeName())
-
-	// log.Println(button.Property("width"))
 	win.Set("x", 0)
 	win.Set("y", 0)
-	// win.Set("width", 1000)
-	// win.Set("height", 768)
 
 	win.Show()
 	win.Wait()
