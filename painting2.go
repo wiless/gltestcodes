@@ -29,20 +29,18 @@ type GoPlot struct {
 }
 
 func (g *GoPlot) init() {
-	// width := int32(g.Int("width"))
-	// g.Npoints = g.Int("nPoints")
-
+ 
 	g.yvals = make([]float32, g.Npoints)
 	for i := 0; i < g.Npoints; i++ {
 		g.yvals[i] = float32(rand.Int31n(int32(g.YMax)))
 	}
 
-	log.Printf("Init() : Seems %#v has only %d points with %v height ", g, g.Npoints, g.YMax)
-	// g.yvals = vlib.Randsrc(int(g.Npoints), height).ToVectorF()
+//	log.Printf("Init() : Seems %#v has only %d points with %v height ", g, g.Npoints, g.YMax)
+ 
 
 }
 func (g *GoPlot) Clicked() {
-	log.Printf("\nPlot was clicked  : ")
+	log.Printf("Plot was clicked  : ")
 	g.Paint(g.mypainter)
 	log.Println("Old sample ", g.yvals[10])
 	for i := 0; i < g.Npoints; i++ {
@@ -55,7 +53,7 @@ func (g *GoPlot) Paint(p *qml.Painter) {
 	// if g.N == 0 {
 	g.mypainter = p
 
-	log.Printf("\n Painter knows :  %#v \n %#v \n Npoints = %v , Height = %v", g, g.Object)
+	log.Printf("Painter knows :  %#v \n %#v \n Npoints = %v , Height = %v", g, g.Object)
 
 	g.init()
 	gl := GL.API(p)
@@ -64,6 +62,7 @@ func (g *GoPlot) Paint(p *qml.Painter) {
 	// gl.BlendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA)
 	gl.LineWidth(2)
 
+	/// Draw a rectangle
 	gl.Begin(GL.QUADS)
 	gl.Color4f(0.1, .1, 0, .4)
 	width := float32(g.Float64("width"))
@@ -74,6 +73,7 @@ func (g *GoPlot) Paint(p *qml.Painter) {
 	gl.Vertex2f(0, height)
 	gl.End()
 
+	// draw connected lines
 	gl.Color4f(.5, .5, 0.1, .3)
 	gl.Begin(GL.LINE_STRIP)
 	gl.Vertex2f(0, float32(g.yvals[0]))
