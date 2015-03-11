@@ -11,6 +11,8 @@ import (
 	"gopkg.in/qml.v1/gl/2.0"
 )
 
+var redraw bool
+
 func main() {
 	rand.Seed(time.Now().UTC().UnixNano())
 	if err := qml.Run(run); err != nil {
@@ -26,6 +28,7 @@ type GoPlot struct {
 	YMax      float64
 	yvals     []float32
 	mypainter *qml.Painter
+	Update    bool
 }
 
 func (g *GoPlot) init() {
@@ -43,12 +46,15 @@ func (g *GoPlot) init() {
 }
 func (g *GoPlot) Clicked() {
 	log.Printf("\nPlot was clicked  : ")
-	g.Paint(g.mypainter)
+
 	log.Println("Old sample ", g.yvals[10])
 	for i := 0; i < g.Npoints; i++ {
 		g.yvals[i] = float32(rand.Int31n(int32(g.YMax)))
 	}
 	log.Println("New sample ", g.yvals[10])
+
+	g.Call("update")
+	// g.mypainter.Call("update")
 }
 
 func (g *GoPlot) Paint(p *qml.Painter) {

@@ -17,12 +17,14 @@ ApplicationWindow {
      yMax:50
   anchors.topMargin: 0
    anchors.leftMargin: 0
+    update:true
      
      objectName:"myobject"
      npoints:100
+
      signal mousePressed()
      MouseArea {
-      id:plotmousearea
+      id:plotmousearea      
       anchors.fill: parent
       }    
     Component.onCompleted: {
