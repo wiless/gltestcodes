@@ -232,7 +232,7 @@ func (g *GoPlot) drawHex(p *qml.Painter) {
 	gl.Translated(cx/zoom, cy/zoom, 0)
 
 	cx, cy = 0, 0
-	NCELLS := 17
+	NCELLS := 19
 	UEperCell := 100
 	ISD := 70.0
 	RDEGREE := 0.0
